@@ -40,12 +40,21 @@ module.exports = {
             transform: "scale(1)",
           },
         },
+        twinkle: {
+          "0%": {
+            filter: "drop-shadow(0 0 0 #84cc16)",
+          },
+          "100%": {
+            filter: "drop-shadow(0 0 20px #84cc16)",
+          },
+        },
       },
       animation: {
         slideBottom: "slideBottom 1s ease-in-out",
         slideTop: "slideTop 1s ease-in-out",
         opacition: "opacition 3s ease-in-out",
         scaleUp: "scaleUp 1s ease-in-out",
+        twinkle: "twinkle 1s linear infinite alternate",
       },
     },
   },

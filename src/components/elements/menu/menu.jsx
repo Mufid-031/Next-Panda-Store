@@ -1,9 +1,14 @@
 import Image from "next/image"
+import Link from "next/link"
 
 const Menu = (Props) => {
 
     const { isOpen } = Props
-    const menu = ['Home', 'Product', 'Category']
+    const menu = ['Home', 'Products', 'Category', 'About']
+
+    const toLowerCase = (str) => {
+        return str.toLowerCase()
+    }
 
     return (
         <div className={`absolute right-0 -bottom-96 bg-[#1a1a1a] w-1/3 h-96 lg:static lg:h-7 lg:bg-transparent lg:translate-x-0 transition duration-500 ${isOpen ? "translate-x-0" : "translate-x-full transition duration-500"}`}>
@@ -13,7 +18,7 @@ const Menu = (Props) => {
                         {
                             menu.map((item, index) => {
                                 return (
-                                    <li className="text-base font-semibold hover:text-lime-500 cursor-pointer mb-4 lg:mb-0" key={index}>{item}</li>
+                                    <li className="text-base font-semibold hover:text-lime-500 cursor-pointer mb-4 lg:mb-0" key={index}><Link href={`/${toLowerCase(item)}`}>{item}</Link></li>
                                 )
                             })
                         }
@@ -23,9 +28,7 @@ const Menu = (Props) => {
                     <div className="w-7 h-7 bg-slate-200 rounded-full -ml-10">
                         <Image src="" alt="" />
                     </div>
-                    <div>
-                        <h3 className="text-lime-500 text-lg font-semibold ml-2">Mufid Risqi</h3>
-                    </div>
+                    <h3 className="text-lime-500 text-lg font-semibold ml-2">Mufid Risqi</h3>
                 </li>
             </ul>
         </div>
