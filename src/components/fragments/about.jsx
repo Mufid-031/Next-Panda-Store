@@ -2,6 +2,10 @@ import Lottie from "lottie-react"
 import animationData1 from "../../../public/lottie/Animation - 1708442799036.json"
 import animationData2 from "../../../public/lottie/Animation - 1708444452575.json"
 import animationData3 from "../../../public/lottie/Animation - 1708445510181.json"
+import Instagram from "../elements/icon/instagram"
+import Twitter from "../elements/icon/twitter"
+import Facebook from "../elements/icon/facebook"
+import Github from "../elements/icon/github"
 
 
 const About = () => {
@@ -32,13 +36,19 @@ const About = () => {
                 </div>
             </main>
             <div className="w-full flex flex-wrap pl-10 lg:pl-20 bg-[#1a1a1a] relative">
-                <div className="w-full lg:w-1/2 text-slate-50 ">
+                <div className="w-full lg:w-1/2 text-slate-50">
                     <h1 className="text-3xl">About Panda Store</h1>
                     <p className="mt-5 w-3/4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatem ratione laborum nihil illum quas mollitia excepturi dicta. Culpa beatae cumque odit sequi quia? Tempora culpa officiis suscipit nam fugit.</p>
                 </div>
                 <div className="w-full lg:w-1/2 text-slate-50 mt-10 lg:mt-0">
                     <h1 className="text-3xl">Follow Us</h1>
                     <p className="mt-5 w-3/4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quam sunt voluptates dolor corrupti veritatis, id recusandae magni sapiente dolorum eum soluta blanditiis libero quisquam est molestiae corporis. Blanditiis, fugit!</p>
+                    <div className="flex mt-5 gap-5">
+                        <Instagram />
+                        <Twitter />
+                        <Facebook />
+                        <Github />
+                    </div>
                 </div>
             </div>
         </section>
