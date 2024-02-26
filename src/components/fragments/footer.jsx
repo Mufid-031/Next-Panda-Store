@@ -2,29 +2,6 @@ import FooterList from "../elements/footer/footerlist"
 
 const Footer = () => {
 
-    
-
-    const projectList = [
-        "Panda Store",
-        "Belajar React",
-        "Script Movies",
-        "Laptop Store"
-    ]
-
-    const skillsList = [
-        "React Js",
-        "Next Js",
-        "Tailwind",
-        "Javascript"
-    ]
-
-    const sosmedList = [
-        "Github",
-        "Instagram",
-        "Facebook",
-        "Twitter"
-    ]
-
     return (
         <footer className="w-full h-screen lg:h-[420px] text-slate-200 pt-10 border-t-2 flex flex-col lg:flex-row justify-around relative bg-[#1a1a1a] lg:bg-transparent">
             <FooterList />
