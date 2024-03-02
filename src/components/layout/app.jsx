@@ -4,11 +4,11 @@ import Navbar from "../fragments/navbar"
 const App = ({ children }) => {
 
     return (
-        <>
+        <div className="overflow-hidden">
             <Navbar />
             {children}
             <Footer />
-        </>
+        </div>
     )
 }
 

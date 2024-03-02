@@ -1,12 +1,12 @@
 import App from "@/components/layout/app"
 import { useRouter } from "next/router"
-
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import app from "@/lib/firebase/init";
 
 const ProductDetails = ({ product }) => {
 
     const router = useRouter()
 
-    console.log(router)
     return (
         <App>
             <section className="w-full flex justify-center items-center pb-36 bg-[#1a1a1a]">
@@ -30,16 +30,22 @@ const ProductDetails = ({ product }) => {
 
 export async function getServerSideProps({ query }) {
 
-    const id = query.id
+    const { id } = query
+    const db = getFirestore(app);
 
-    const res = await fetch("http://localhost:3000/api/id")
-    const response = await res.json()
+    async function retrieveData(db, collectionName, id) {
+        const docRef = doc(db, collectionName, id);
+        const docSnap = await getDoc(docRef);
+
+        return docSnap.data()
+    }
 
     return {
         props: {
-            product: response
+            product: await retrieveData(db, "products", id)
         }
     }
+
 }
 
 export default ProductDetails

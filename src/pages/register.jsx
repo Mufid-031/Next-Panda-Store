@@ -1,7 +1,10 @@
 import FormInput from "@/components/fragments/formInput"
 import Auth from "@/components/layout/auth"
 
+
 const Register = () => {
+
+
     return (
         <Auth type="register">
             <form className="flex flex-col my-5" action="">

@@ -11,17 +11,21 @@ module.exports = {
         slideBottom: {
           "0%": {
             transform: "translateY(-100%)",
+            opacity: "opacity(0)",
           },
           "100%": {
             transform: "translateY(0)",
+            opacity: "opacity(1)",
           },
         },
         slideTop: {
           "0%": {
             transform: "translateY(100%)",
+            opacity: "opacity(0)",
           },
           "100%": {
             transform: "translateY(0)",
+            opacity: "opacity(1)",
           },
         },
         opacition: {
