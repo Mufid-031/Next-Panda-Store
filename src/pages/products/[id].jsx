@@ -12,7 +12,7 @@ const ProductDetails = ({ product }) => {
             <section className="w-full flex justify-center items-center pb-36 bg-[#1a1a1a]">
                 <div className="w-full flex justify-center items-center mt-20">
                     <div className="w-1/4 h-3/4 border-2 p-4 rounded-lg">
-                        <img className="w-full" src={product.img} alt="" />
+                        <img className="w-full h-full" src={product.img} alt={product.name} />
                     </div>
                     <div className="w-2/4 h-96 border-2 p-4 rounded-lg">
                         <h1 className="text-3xl font-semibold text-slate-100 text-center mb-10">{product.name}</h1>
