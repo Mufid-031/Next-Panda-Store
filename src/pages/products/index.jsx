@@ -56,7 +56,7 @@ const ProductsServer = ({ productsData }) => {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch('http://localhost:3000/api/firebase')
+    const res = await fetch(`${process.env.PATHNAME}/api/firebase`)
     const response = await res.json()
 
 
