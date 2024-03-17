@@ -5,6 +5,8 @@ import { useRouter } from "next/router"
 import { useEffect } from "react"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { rupiah } from "@/currency"
+import ProductView from "@/views/productview/productview"
 
 
 const ProductsServer = ({ productsData }) => {
@@ -14,13 +16,6 @@ const ProductsServer = ({ productsData }) => {
     useEffect(() => {
         AOS.init();
     }, [])
-
-    const rupiah = (number) => {
-        return new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR",
-        }).format(number);
-    }
 
 
     return (
@@ -34,26 +29,14 @@ const ProductsServer = ({ productsData }) => {
                     {/* <Lottie className="absolute top-60 -right-32 lg:top-72 lg:right-10 w-1/3 lg:w-1/5 animate-slideTop" animationData={animationData} loop={true} /> */}
                 </div>
                 <div className="w-full h-full flex flex-wrap gap-5 justify-center">
-                    {
-                        productsData && productsData.map((item, index) => {
-                            return (
-                                <div data-aos="zoom-in-up" onClick={() => router.push(`/products/${item.id}`)} key={index} className="w-full lg:w-1/4 h-[550px] shadow-lg rounded-lg text-center mt-10 bg-slate-200 overflow-hidden z-10">
-                                    <img className="w-full h-[380px] mx-auto mb-6" src={item.img} alt="panda" />
-                                    <h3 className="text-lg font-semibold mb-3">{item.name}...</h3>
-                                    <p className="text-sm mb-5">Category: {item.category}</p>
-                                    <div className="flex justify-between items-center mt-3">
-                                        <h4 className="text-lg font-semibold pl-7">{rupiah(item.price)}</h4>
-                                        <button className="bg-slate-400 hover:bg-lime-500 hover:text-slate-800 transition duration-500 rounded-md mr-7 px-7 py-1">Buy</button>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
+                    <ProductView productsData={productsData} />
                 </div>
             </section>
         </App>
     )
 }
+
+
 
 export async function getServerSideProps() {
     const res = await fetch(`${process.env.PATHNAME}/api/firebase`)
@@ -62,10 +45,9 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            productsData: response
+            productsData: response,
         }
     }
 }
-
 
 export default ProductsServer

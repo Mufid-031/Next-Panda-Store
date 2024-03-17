@@ -1,15 +1,9 @@
-import SectionCategory from "@/components/fragments/sectioncategory";
+import SectionCategory from "@/views/sectioncategory";
 import App from "@/components/layout/app";
+import { rupiah } from "@/currency";
 
 
 const Category = ({ productsData0, productsData1, productsData2 }) => {
-
-    const rupiah = (number) => {
-        return new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR",
-        }).format(number);
-    }
 
     return (
         <App>
@@ -27,12 +21,12 @@ export default Category
 export async function getServerSideProps() {
 
 
-    const res0 = await fetch(`${process.env.PATHNAME}/api/men`)
-    const response0 = await res0.json()
-    const res1 = await fetch(`${process.env.PATHNAME}/api/firebase`)
-    const response1 = await res1.json()
-    // const res2 = await fetch(`http://localhost:3000/api/${category[2]}`)
-    // const response2 = await res2.json()
+    const res0 = await fetch(`${process.env.PATHNAME}/api/men`);
+    const response0 = await res0.json();
+    const res1 = await fetch(`${process.env.PATHNAME}/api/firebase`);
+    const response1 = await res1.json();
+    // const res2 = await fetch(`http://localhost:3000/api/${category[2]}`);
+    // const response2 = await res2.json();
 
     return {
         props: {
