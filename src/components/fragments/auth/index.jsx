@@ -1,9 +1,9 @@
-import Input from "../elements/forminput/input"
-import Label from "../elements/forminput/label"
+import Input from "./input"
+import Label from "./label"
 
 const FormInput = (Props) => {
 
-    const {  type, name, placeholder, id, htmlFor, value } = Props
+    const { type, name, placeholder, id, htmlFor, value } = Props
 
     return (
         <>

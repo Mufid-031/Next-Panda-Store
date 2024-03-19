@@ -2,7 +2,7 @@ import Link from "next/link"
 import BgBottom from "../elements/background/bgbottom"
 import BgTop from "../elements/background/bgtop"
 
-const Auth = (Props) => {
+const AuthLayout = (Props) => {
 
     const { children, type } = Props
 
@@ -30,4 +30,4 @@ const Auth = (Props) => {
     )
 }
 
-export default Auth
+export default AuthLayout

@@ -1,50 +1,46 @@
-import FormInput from "@/components/fragments/formInput";
-import Auth from "@/components/layout/auth";
+import AuthLayout from "@/components/layout/authlayout";
+import FormInput from "@/components/fragments/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { postData } from "@/lib/firebase/service";
+import { FaEye } from "react-icons/fa";
+import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 
 
 const Register = () => {
 
     const router = useRouter();
-    const [email, setEmail] = useState("");
-    const [passwordOne, setPasswordOne] = useState("");
-    const [passwordTwo, setPasswordTwo] = useState("");
-    const [error, setError] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword1, setShowPassword1] = useState(false);
 
-    const handleRegister = async (event) => {
-        setError(null);
-        event.preventDefault()
-        console.log(email, passwordOne, passwordTwo)
-        if (passwordOne === passwordTwo) {
-            await createUserWithEmailAndPassword(email, passwordOne)
-                .then(authUser => {
-                    console.log(authUser);
-                    event.terget.reset()
-                })
-                .catch(error => {
-                    console.log(error.message)
-                });
-        } else {
-            setError("Passwords do not match");
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        const data = {
+            id: 1,
+            email: e.target.email.value,
+            password: e.target.password1.value
         }
+        const { result, error } = await postData("users", data.id, data);
 
+        if (result) {
+            router.push('/login');
+        }
     }
 
-
     return (
-        <Auth type="register">
-            <form className="flex flex-col my-5" onSubmit={(event) => handleRegister(event)}>
-                <FormInput type="text" onChange={(event) => setEmail(event.target.value)} name="email" id="email" placeholder="example@gmail.com" htmlFor="email" value="Email" />
-                <FormInput type="password" onChange={setPasswordOne} name="password1" id="password1" placeholder="*****" htmlFor="password" value="Password" />
-                <FormInput type="password" onChange={(event) => setPasswordTwo(event.target.value)} name="password2" id="password2" placeholder="*****" htmlFor="password" value="Confirm Password" />
-                <Link className="bg-slate-500 p-2 rounded-md mt-5 font-bold text-lg text-center text-slate-300 hover:bg-lime-500 hover:text-slate-900 transition duration-700" type="submit" href={`${error === null ? "/register" : "/register"}`}>
+        <AuthLayout type="register">
+            <form className="flex flex-col my-5 relative" onSubmit={(e) => { handleRegister(e) }}>
+                <FormInput type="text" name="email" id="email" placeholder="example@gmail.com" htmlFor="email" value="Email" />
+                <FormInput type={showPassword ? "text" : "password"} name="password1" id="password1" placeholder="*****" htmlFor="password" value="Password" />
+                {showPassword ? <FaEye size={20} className="absolute right-2 top-[150px] opacity-50 hover:opacity-100 cursor-pointer" onClick={() => setShowPassword(!showPassword)} /> : <IoMdEyeOff size={22} className="absolute right-2 top-[150px] opacity-50 hover:opacity-100 cursor-pointer" onClick={() => setShowPassword(!showPassword)} />}
+                <FormInput type={showPassword1 ? "text" : "password"} name="password2" id="password2" placeholder="*****" htmlFor="password" value="Confirm Password" />
+                {showPassword1 ? <FaEye size={20} className="absolute right-2 top-[247px] opacity-50 hover:opacity-100 cursor-pointer" onClick={() => setShowPassword1(!showPassword1)} /> : <IoMdEyeOff size={22} className="absolute right-2 top-[247px] opacity-50 hover:opacity-100 cursor-pointer" onClick={() => setShowPassword1(!showPassword1)} />}
+                <Link className="bg-slate-500 p-2 rounded-md mt-5 font-bold text-lg text-center text-slate-300 hover:bg-lime-500 hover:text-slate-900 transition duration-700" href="/login" type="submit">
                     Register
                 </Link>
             </form>
-        </Auth>
+        </AuthLayout>
     )
 }
 

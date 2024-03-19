@@ -1,4 +1,4 @@
-import FooterList from "../elements/footer/footerlist"
+import FooterList from "./footerlist"
 
 const Footer = () => {
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Menu from "../elements/menu/menu";
-import Hamburger from "../elements/menu/hamburger";
+import Menu from "./menu";
+import Hamburger from "./hamburger";
 
 
 const Navbar = () => {

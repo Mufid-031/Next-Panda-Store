@@ -1,15 +1,20 @@
-import FormInput from "@/components/fragments/formInput"
-import Auth from "@/components/layout/auth"
+import AuthLayout from "@/components/layout/authlayout";
+import FormInput from "@/components/fragments/auth"
 import Link from "next/link"
+import { FaEye } from "react-icons/fa";
+import { IoMdEyeOff } from "react-icons/io";
+import { useState } from "react";
 
 const Login = () => {
 
+    const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <Auth type="login">
-            <form className="flex flex-col my-5">
+        <AuthLayout type="login">
+            <form className="flex flex-col my-5 relative">
                 <FormInput type="email" name="email" placeholder="example@gmail.com" htmlFor="email" value="Email" />
-                <FormInput type="password" name="password" placeholder="Password" htmlFor="password" value="Password" />
+                <FormInput type={showPassword ? "text" : "password"} name="password" placeholder="Password" htmlFor="password" value="Password" />
+                {showPassword ? <FaEye size={20} className="absolute right-2 top-[150px] opacity-50 hover:opacity-100 cursor-pointer" onClick={() => setShowPassword(!showPassword)} /> : <IoMdEyeOff size={22} className="absolute right-2 top-[150px] opacity-50 hover:opacity-100 cursor-pointer" onClick={() => setShowPassword(!showPassword)} />}
                 <p className="text-slate-200">
                     Forgot your <span className="text-lime-500">password?</span>
                 </p>
@@ -17,7 +22,7 @@ const Login = () => {
                     Login
                 </Link>
             </form>
-        </Auth>
+        </AuthLayout>
     )
 }
 

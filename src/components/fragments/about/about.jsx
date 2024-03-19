@@ -1,11 +1,11 @@
 import Lottie from "lottie-react"
-import animationData1 from "../../../public/lottie/Animation - 1708442799036.json"
-import animationData2 from "../../../public/lottie/Animation - 1708444452575.json"
-import animationData3 from "../../../public/lottie/Animation - 1708445510181.json"
-import Instagram from "../elements/icon/instagram"
-import Twitter from "../elements/icon/twitter"
-import Facebook from "../elements/icon/facebook"
-import Github from "../elements/icon/github"
+import animationData1 from "/public/lottie/Animation - 1708442799036.json"
+import animationData2 from "/public/lottie/Animation - 1708444452575.json"
+import animationData3 from "/public/lottie/Animation - 1708445510181.json"
+import Instagram from "../../elements/icon/instagram"
+import Twitter from "../../elements/icon/twitter"
+import Facebook from "../../elements/icon/facebook"
+import Github from "../../elements/icon/github"
 
 
 const About = () => {
