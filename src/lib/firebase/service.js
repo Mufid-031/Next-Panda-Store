@@ -1,13 +1,4 @@
-import { 
-  addDoc, 
-  collection, 
-  doc, 
-  getDoc, 
-  getDocs, 
-  getFirestore, 
-  query, 
-  where 
-} from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
 import app from "./init";
 import bcrypt from "bcrypt";
 
@@ -56,7 +47,7 @@ export async function signUp(userData, callback) {
 }
 
 export async function signIn(userData, callback) {
-  const q = query(collection(firestore, "users"), where("email", "==", userData.email));
+  const q = query(collection(firestore, "users"), where("email", "==", email));
 
   const snapshot = await getDocs(q);
   const data = snapshot.docs.map((doc) => ({
@@ -64,14 +55,10 @@ export async function signIn(userData, callback) {
     ...doc.data(),
   }));
 
-  if (data.length > 0) {
-    if (await bcrypt.compare(userData.password1, data[0].password1)) {
-      callback(true);
-    } else {
-      callback(false);
-    }
+  if (data) {
+    return data[0];
   } else {
-    callback(false);
+    return null;
   }
 }
 

@@ -36,7 +36,7 @@ const Register = () => {
             password1: password1
         }
 
-        const res = await fetch("/api/register", {
+        const res = await fetch("/api/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
