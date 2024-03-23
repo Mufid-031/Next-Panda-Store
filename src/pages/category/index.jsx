@@ -21,9 +21,9 @@ export default Category
 export async function getServerSideProps() {
 
 
-    const res0 = await fetch(`${process.env.PATHNAME}/api/men`);
+    const res0 = await fetch(`${process.env.PATHNAME}/api/products/men`);
     const response0 = await res0.json();
-    const res1 = await fetch(`${process.env.PATHNAME}/api/firebase`);
+    const res1 = await fetch(`${process.env.PATHNAME}/api/products/firebase`);
     const response1 = await res1.json();
     // const res2 = await fetch(`http://localhost:3000/api/${category[2]}`);
     // const response2 = await res2.json();
