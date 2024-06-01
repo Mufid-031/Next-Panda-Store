@@ -34,7 +34,7 @@ export async function signUp(userData, callback) {
   if (data.length > 0) {
     callback(false);
   } else {
-    userData.password1 = await bcrypt.hash(userData.password1, 10);
+    userData.password = await bcrypt.hash(userData.password, 10);
     await addDoc(collection(firestore, "users"), userData)
       .then(() => {
         callback(true);
@@ -46,20 +46,22 @@ export async function signUp(userData, callback) {
   }
 }
 
-export async function signIn(userData, callback) {
-  const q = query(collection(firestore, "users"), where("email", "==", email));
+export async function signIn(email) {
+    const q = query(collection(firestore, "users"), where("email", "==", email));
 
-  const snapshot = await getDocs(q);
-  const data = snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+    const snapshot = await getDocs(q);
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      password: doc.password,
+      ...doc.data(),
+    }));
 
-  if (data) {
-    return data[0];
-  } else {
-    return null;
-  }
+    if (data) {
+      return data[0];
+    } else {
+      return null;
+    }
+
 }
 
 export { firestore };

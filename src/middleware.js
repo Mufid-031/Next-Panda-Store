@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
 
-export function middleware(req) {
-  const isLogin = true;
-  if (isLogin) {
+export async function middleware(req) {
+  // const session = await getSession({ req });
+  const login = true;
+  // if (session && session.status === "authenticated") {
+  //   console.log(session);
+  //   return NextResponse.next();
+  // } else {
+  //   return NextResponse.redirect(new URL("/login", req.url));
+  // }
+
+  if (login) {
     return NextResponse.next();
   } else {
     return NextResponse.redirect(new URL("/login", req.url));
@@ -11,4 +19,7 @@ export function middleware(req) {
 
 export const config = {
   matcher: ["/home", "/products", "/products/cildent", "/category", "/about"],
+  pages: {
+    signIn: "/login",
+  },
 };

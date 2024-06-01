@@ -4,8 +4,13 @@ import GetWaves from "@/components/elements/getwaves/getwaves";
 import About from "@/components/fragments/about/about";
 import App from "@/components/layout/app";
 import ContactUs from "@/components/fragments/contact";
+import { useSession } from "next-auth/react";
 
 const Home = () => {
+
+    const {data} = useSession();
+
+    console.log(data)
 
     return (
         <div className="overflow-hidden">
