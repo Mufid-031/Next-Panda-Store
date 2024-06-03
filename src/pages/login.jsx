@@ -61,7 +61,9 @@ const Login = () => {
                 <button className="bg-slate-500 p-2 rounded-md mt-5 font-bold text-lg text-center text-slate-300 hover:bg-lime-500 hover:text-slate-900 transition duration-700" type="submit">
                     Login
                 </button>
-                <button className="bg-slate-500 p-2 rounded-md mt-5 font-bold text-lg text-center text-slate-300 hover:bg-lime-500 hover:text-slate-900 transition duration-700" onClick={() => signIn("google")}>Login with Google</button>
+                <button className="bg-slate-500 p-2 rounded-md mt-5 font-bold text-lg text-center text-slate-300 hover:bg-lime-500 hover:text-slate-900 transition duration-700" type="button" onClick={() => signIn("google", { callbackUrl, redirect: false })}>
+                    Login with Google
+                </button>
             </form>
         </AuthLayout>
     )

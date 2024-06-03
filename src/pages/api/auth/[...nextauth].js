@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { signIn } from "@/lib/firebase/service";
+import { loginWithGoogle, signIn } from "@/lib/firebase/service";
 import NextAuth from "next-auth";
 import { compare } from "bcrypt";
 
@@ -42,8 +42,8 @@ const authOptions = {
           prompt: "consent",
           access_type: "offline",
           response_type: "code",
-        }
-      }
+        },
+      },
     }),
   ],
   callbacks: {
@@ -56,10 +56,18 @@ const authOptions = {
       }
 
       if (account?.providers === "google") {
-        token.email = profile.email;
-        token.fullname = profile.name;
-        token.phone = profile.phone;
-        token.role = user.role;
+        const dataUser = {
+          fullname: user.fullname,
+          email: user.email,
+          type: "google",
+        };
+
+        await loginWithGoogle(dataUser, (data) => {
+          token.email = data.email;
+          token.fullname = data.fullname;
+          token.phone = data.phone;
+          token.role = data.role;
+        });
       }
 
       return token;
@@ -81,7 +89,6 @@ const authOptions = {
 
       return session;
     },
-
   },
   pages: {
     signIn: "/login",

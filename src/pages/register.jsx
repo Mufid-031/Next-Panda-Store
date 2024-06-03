@@ -30,7 +30,7 @@ const Register = () => {
             password: password
         }
 
-        const res = await fetch("/api/users/register", {
+        const res = await fetch(process.env.PATHNAME + "/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

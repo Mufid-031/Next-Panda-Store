@@ -1,7 +1,6 @@
 import Link from "next/link"
 import BgBottom from "../elements/background/bgbottom"
 import BgTop from "../elements/background/bgtop"
-import { signIn } from "next-auth/react"
 
 const AuthLayout = (Props) => {
 
